@@ -6,6 +6,9 @@
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="styles.css">
     <script>
         const light = ['black', 'white', 'red', 'dodgerblue', 'goldenrod', 'green'];
         let color = 0;
@@ -20,6 +23,16 @@
 
         function autoFlip() {
             document.body.style.backgroundColor = light[color];
+            if (color === 0) {
+                document.body.style.color = "white";
+                let buttons = document.getElementsByClassName("bigButton");
+                [...buttons].forEach(button => button.style.color = "black");
+            } else {
+                document.body.style.color = "black";
+                let buttons = document.getElementsByClassName("bigButton");
+                [...buttons].forEach(button => button.style.color = "black");
+            }
+
             if (color < light.length-1) {
                 color++;
             } else {
@@ -28,10 +41,10 @@
             t = setTimeout("autoFlip()", speed);
         }
 
-        function doAutoFlip(changeSpeed) {
+        function doAutoFlip() {
             if (!flipping) {
                 flipping = 1;
-                speed = changeSpeed;
+                speed = Number(document.getElementById('rate').value);;
                 autoFlip();
             }
         }
@@ -45,6 +58,13 @@
     <title>WatzThis?</title>
 </head>
 <body>
+    <h1>WatzThis?</h1>
+    <div id="directions">
+        <ol>
+            <li>Use the top row of buttons to turn the flashlight on or off, or to make the light red.</li>
+            <li>Use the 2nd row of buttons to turn on and off your automatic flashing color light dance party.</li>
+        </ol>
+    </div>
     <div class="container">
         <div class="flashlight">
             <input type="button" id="OFF" class="bigButton" value="OFF" onclick="flip(0);">
@@ -52,8 +72,11 @@
             <input type="button" id="RED" class="bigButton" value="RED" onclick="flip(2);">
         </div>
         <div class="danceparty">
-            <input type="button" id="AUTO" class="bigButton" value="AUTO" onclick="doAutoFlip(500);">
-            <input type="button" id="STOP" class="bigButton" value="STOP" onclick="stopFlip();">
+            <input type="button" id="AUTO" class="bigButton" value="AUTO" onclick="doAutoFlip();">
+            <input type="button" id="STOP" class="bigButton" value="STOP" onclick="stopFlip();"><br><br>
+            <label for="rate">
+                Change Rate: <input type="number" id="rate" value="500" style="width: 40px">
+            </label>
         </div>
         <p class="warning">WARNING: If you are prone to seizures, do not press the Auto button!</p>
     </div>
