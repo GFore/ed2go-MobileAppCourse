@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script>
-        const light = ['black', 'white'];
+        const light = ['black', 'white', 'red', 'dodgerblue', 'goldenrod', 'green'];
         const flip = (whichway) => {document.body.style.backgroundColor = light[whichway];}
     </script>
     <title>WatzThis?</title>
@@ -15,5 +15,9 @@
 <body>
     <input type="button" value="OFF" onclick="flip(0);">
     <input type="button" value="ON" onclick="flip(1);">
+    <input type="button" value="RED" onclick="flip(2);">
+    <input type="button" value="BLUE" onclick="flip(3);">
+    <input type="button" value="GOLDENROD" onclick="flip(4);">
+    <input type="button" value="GREEN" onclick="flip(5);">
 </body>
 </html>
